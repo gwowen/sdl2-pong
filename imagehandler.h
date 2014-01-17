@@ -8,6 +8,10 @@
 #ifndef IMAGEHANDLER_H
 #define	IMAGEHANDLER_H
 
+class imageHandler {
+    
+};
+
 
 
 #endif	/* IMAGEHANDLER_H */
