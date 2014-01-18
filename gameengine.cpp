@@ -16,12 +16,29 @@ bool gameEngine::Init( const char* title, int width, int height ) {
                                         width, 
                                         height,
                                         SDL_WINDOW_SHOWN );
+    
     if( m_Window == NULL ) {
         printf( "Could not create window. SDL Error %s", SDL_GetError() );
-        return 1;
+        return false;
     }
     
-    m_Screen = SDL_GetWindowSurface( m_Window );
+    m_Renderer = SDL_CreateRenderer( m_Window, -1, SDL_RENDERER_ACCELERATED );
+    
+    if( m_Renderer == NULL) {
+        printf( "Could not create renderer. SDL Error %s\n", SDL_GetError() );
+        return false;
+    }
+    else {
+        //set renderer draw color
+        SDL_SetRenderDrawColor( m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        
+        //initialize PNG loading
+        int imgFlags = IMG_INIT_PNG;
+        if( !( IMG_Init( imgFlags ) & imgFlags ) ) {
+            printf( "SDL image could not initialize. SDL_image error:%s\n", IMG_GetError() );
+            return false;
+        }
+    }
     
     m_Running = true;
     printf( "gameEngine init\n" );
@@ -38,6 +55,8 @@ void gameEngine::Cleanup() {
     
     printf( "gameEngine cleanup\n" );
     SDL_DestroyWindow( m_Window );
+    SDL_DestroyRenderer( m_Renderer );
+    IMG_Quit();
     SDL_Quit();
 }
 
@@ -48,7 +67,7 @@ void gameEngine::changeState(gameState* state) {
     }
     
     states.push_back( state );
-    states.back()->Init();
+    states.back()->Init( this );
     
 }
 
@@ -58,7 +77,7 @@ void gameEngine::pushState(gameState* state) {
     }
     
     states.push_back( state );
-    states.back()->Init();
+    states.back()->Init( this );
 }
 
 void gameEngine::popState() {
