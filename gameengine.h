@@ -34,12 +34,10 @@ public:
     
     SDL_Window* m_Window;
     
-    SDL_Surface* m_Screen;
-    
     SDL_Renderer* m_Renderer;
     
 private:
-    //game state stack... which will be staying as one for a while
+    //game state stack... which will be staying as just one instance for a while...
     vector<gameState*> states;
     //running variable
     bool m_Running;

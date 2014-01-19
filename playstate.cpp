@@ -8,12 +8,13 @@
 #include "gamestate.h"
 #include "gameengine.h"
 #include "playstate.h"
+#include "graphics.h"
 
 playState playState::m_playState;
 
-void playState::Init() {
+void playState::Init( gameEngine* game ) {
     
-    temp = SDL_LoadBMP( "../helloworld.bmp");
+    testTexture = Texture::textureLoad("../bat.png", game->m_Renderer );
     
 }
 
@@ -51,7 +52,9 @@ void playState::Update( gameEngine* game) {
 }
 
 void playState::Draw( gameEngine* game) {
-    SDL_BlitSurface( temp, NULL, game->m_Screen, NULL );
-    SDL_UpdateWindowSurface( game->m_Window );
+    SDL_SetRenderDrawColor( game->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( game->m_Renderer );
+    Texture::textureDraw( testTexture, game->m_Renderer, 100, 100 );
+    SDL_RenderPresent( game->m_Renderer );
     
 }

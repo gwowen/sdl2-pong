@@ -13,7 +13,7 @@
 class playState: public gameState {
     
     public:
-        void Init();
+        void Init( gameEngine* game );
         void Cleanup();
         
         void Pause();
@@ -34,6 +34,8 @@ class playState: public gameState {
             static playState m_playState;
             
             SDL_Surface* temp;
+            
+            SDL_Texture* testTexture;
             
     
 };
