@@ -29,9 +29,7 @@ void Texture::textureDraw(SDL_Texture* &texDrawTex, SDL_Renderer*& texDrawRender
     renderQuad.y = y;
     
     SDL_QueryTexture( texDrawTex, NULL, NULL, &renderQuad.w, &renderQuad.h );
-    
-
-    
+  
     SDL_RenderCopyEx( texDrawRenderer, texDrawTex, clip, &renderQuad, angle, center, flip);
 }
 
