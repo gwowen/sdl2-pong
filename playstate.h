@@ -9,6 +9,7 @@
 #define	PLAYSTATE_H
 #include <SDL2/SDL.h>
 #include "gamestate.h"
+#include "gameobject.h"
 
 class playState: public gameState {
     
@@ -36,6 +37,8 @@ class playState: public gameState {
             SDL_Surface* temp;
             
             SDL_Texture* testTexture;
+            
+            gameObject testObj;
             
     
 };

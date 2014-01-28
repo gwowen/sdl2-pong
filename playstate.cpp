@@ -13,12 +13,14 @@
 playState playState::m_playState;
 
 void playState::Init( gameEngine* game ) {
-    
-    testTexture = Texture::textureLoad("../bat.png", game->m_Renderer );
+        //testTexture = Texture::textureLoad("../bat.png", game->m_Renderer );
+    testObj.Load( "../bat.png", game->m_Renderer );
     
 }
 
 void playState::Cleanup() {
+    testObj.Cleanup();
+    
     
 }
 
@@ -54,7 +56,8 @@ void playState::Update( gameEngine* game) {
 void playState::Draw( gameEngine* game) {
     SDL_SetRenderDrawColor( game->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( game->m_Renderer );
-    Texture::textureDraw( testTexture, game->m_Renderer, 100, 100 );
+    //Texture::textureDraw( testTexture, game->m_Renderer, 100, 100 );
+    testObj.Render( game->m_Renderer );
     SDL_RenderPresent( game->m_Renderer );
     
 }
