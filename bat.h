@@ -17,7 +17,7 @@ class Bat: public gameObject {
         int batRealMiddle;
         
         Bat();
-        void Load( std::string file, SDL_Renderer* &batLoadRenderer );
+        void Load( std::string file, SDL_Renderer* &batLoadRenderer, int x, int y, int width, int height );
         void Render( SDL_Renderer* & batDrawRenderer );
         void Cleanup();
 };

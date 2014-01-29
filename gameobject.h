@@ -29,7 +29,7 @@ public:
     gameObject();
     virtual ~gameObject();
     
-    virtual void Load( std::string file, SDL_Renderer* &loadRenderer );
+    virtual void Load( std::string file, SDL_Renderer* &loadRenderer, int x, int y, int width, int height );
     virtual void Event();
     virtual void Render( SDL_Renderer* &objRenderer );
     virtual void Cleanup();

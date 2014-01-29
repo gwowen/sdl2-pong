@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 #include "gamestate.h"
 #include "gameobject.h"
+#include "bat.h"
 
 class playState: public gameState {
     
@@ -38,7 +39,7 @@ class playState: public gameState {
             
             SDL_Texture* testTexture;
             
-            gameObject testObj;
+            Bat myBat;
             
     
 };
