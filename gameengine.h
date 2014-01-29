@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL.h>
 #include <vector>
+#include "constants.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class gameState;
 
 class gameEngine {
 public:
-    bool Init( const char* title, int width = 640, int height = 480 );
+    bool Init( const char* title, int width = SCREEN_WIDTH, int height = SCREEN_HEIGHT );
     void Cleanup();
     void changeState( gameState* state );
     void pushState( gameState* state );

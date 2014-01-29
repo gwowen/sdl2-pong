@@ -9,6 +9,7 @@
 #include "gameengine.h"
 #include "playstate.h"
 #include "graphics.h"
+#include "constants.h"
 
 playState playState::m_playState;
 
@@ -42,7 +43,16 @@ void playState::handleEvents( gameEngine* game ) {
         
         if( event.type == SDL_KEYDOWN ) {
             switch( event.key.keysym.sym ) {
+                case SDLK_w: myBat.batYVel -= BAT_VEL; break;
+                case SDLK_s: myBat.batYVel += BAT_VEL; break;
                 case SDLK_ESCAPE: game->Quit();
+                default:break;
+            }
+        }
+        else if( event.type == SDL_KEYUP ) {
+            switch( event.key.keysym.sym ) {
+                case SDLK_w: myBat.batYVel += BAT_VEL; break;
+                case SDLK_s: myBat.batYVel -= BAT_VEL; break;
                 default:break;
             }
         }
@@ -50,13 +60,12 @@ void playState::handleEvents( gameEngine* game ) {
 }
 
 void playState::Update( gameEngine* game) {
-    
+    myBat.Loop();
 }
 
 void playState::Draw( gameEngine* game) {
     SDL_SetRenderDrawColor( game->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( game->m_Renderer );
-    //testObj.Render( game->m_Renderer );
     myBat.Render( game->m_Renderer );
     SDL_RenderPresent( game->m_Renderer );
     

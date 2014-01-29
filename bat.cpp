@@ -15,6 +15,17 @@ void Bat::Render(SDL_Renderer*& batDrawRenderer) {
     
 }
 
+void Bat::Loop() {
+    objectBox.y += batYVel;
+    
+    if( objectBox.y < 0) {
+        objectBox.y = 0;
+    }
+    else if( objectBox.y + objectBox.h > SCREEN_HEIGHT ) {
+        objectBox.y = SCREEN_HEIGHT - objectBox.h;
+    }
+}
+
 void Bat::Cleanup() {
     gameObject::Cleanup();
 }

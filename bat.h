@@ -9,6 +9,7 @@
 #define	BAT_H
 
 #include "gameobject.h"
+#include "constants.h"
 
 class Bat: public gameObject {
     public: 
@@ -20,6 +21,7 @@ class Bat: public gameObject {
         void Load( std::string file, SDL_Renderer* &batLoadRenderer, int x, int y, int width, int height );
         void Render( SDL_Renderer* & batDrawRenderer );
         void Cleanup();
+        void Loop();
 };
 
 
