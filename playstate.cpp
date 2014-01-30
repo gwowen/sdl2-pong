@@ -41,7 +41,7 @@ void playState::handleEvents( gameEngine* game ) {
             game->Quit();
         }
         
-        if( event.type == SDL_KEYDOWN ) {
+        if( event.type == SDL_KEYDOWN && event.key.repeat == 0 ) {
             switch( event.key.keysym.sym ) {
                 case SDLK_w: myBat.batYVel -= BAT_VEL; break;
                 case SDLK_s: myBat.batYVel += BAT_VEL; break;
@@ -49,7 +49,7 @@ void playState::handleEvents( gameEngine* game ) {
                 default:break;
             }
         }
-        else if( event.type == SDL_KEYUP ) {
+        else if( event.type == SDL_KEYUP  && event.key.repeat == 0 ) {
             switch( event.key.keysym.sym ) {
                 case SDLK_w: myBat.batYVel += BAT_VEL; break;
                 case SDLK_s: myBat.batYVel -= BAT_VEL; break;
@@ -68,5 +68,4 @@ void playState::Draw( gameEngine* game) {
     SDL_RenderClear( game->m_Renderer );
     myBat.Render( game->m_Renderer );
     SDL_RenderPresent( game->m_Renderer );
-    
 }

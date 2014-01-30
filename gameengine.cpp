@@ -11,6 +11,10 @@ bool gameEngine::Init( const char* title, int width, int height ) {
         return false;
     }
     
+    if( !SDL_SetHint( SDL_HINT_RENDER_VSYNC, "1") ) {
+        printf( "Warning: VSync not enabled" );
+    }
+    
     m_Window = SDL_CreateWindow( title, SDL_WINDOWPOS_UNDEFINED, 
                                         SDL_WINDOWPOS_UNDEFINED, 
                                         width, 
