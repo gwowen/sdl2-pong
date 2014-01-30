@@ -10,19 +10,20 @@
 #include "playstate.h"
 #include "graphics.h"
 #include "constants.h"
+#include "ball.h"
 
 playState playState::m_playState;
 
 void playState::Init( gameEngine* game ) {
     
     myBat.Load( "../bat.png", game->m_Renderer, 100, 100, 10, 101 );
+    myBall.Load( "../ball.png", game->m_Renderer, 400, 300, 20, 20 );
     
 }
 
 void playState::Cleanup() {
     myBat.Cleanup();
-    
-    
+    myBall.Cleanup();
 }
 
 void playState::Pause() {
@@ -61,11 +62,13 @@ void playState::handleEvents( gameEngine* game ) {
 
 void playState::Update( gameEngine* game) {
     myBat.Loop();
+    myBall.Loop();
 }
 
 void playState::Draw( gameEngine* game) {
     SDL_SetRenderDrawColor( game->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( game->m_Renderer );
     myBat.Render( game->m_Renderer );
+    myBall.Render( game->m_Renderer );
     SDL_RenderPresent( game->m_Renderer );
 }

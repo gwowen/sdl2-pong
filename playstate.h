@@ -11,6 +11,7 @@
 #include "gamestate.h"
 #include "gameobject.h"
 #include "bat.h"
+#include "ball.h"
 
 class playState: public gameState {
     
@@ -40,6 +41,8 @@ class playState: public gameState {
             SDL_Texture* testTexture;
             
             Bat myBat;
+            
+            Ball myBall;
             
     
 };

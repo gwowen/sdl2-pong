@@ -5,7 +5,7 @@
 int main( int argc, char* argv[] ) {
     gameEngine game;
     
-    if( !game.Init("Test") ) {
+    if( !game.Init("SDL2 Pong") ) {
         printf( "Game failed to initialize\n");
     }
     
