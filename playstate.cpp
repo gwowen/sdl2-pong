@@ -18,14 +18,14 @@ void playState::Init( gameEngine* game ) {
     
     myBat1.Load( "../bat.png", game->m_Renderer, 50, 100, 10, 101 );
     myBat2.Load( "../bat.png", game->m_Renderer, 590, 100, 10, 101 );
-    myBall.Load( "../ball.png", game->m_Renderer, 400, 300, 20, 20 );
+    myBall.Load( "../ball.png", game->m_Renderer, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 20, 20 );
     
     gameObject::objectList.push_back( &myBat1 );
     gameObject::objectList.push_back( &myBat2 );
     gameObject::objectList.push_back( &myBall );
     
     scoreFont = TTF_OpenFont( "../pager.ttf", 28 );
-    textTest = Texture::drawText( scoreFont, game->m_Renderer, "Hello World");
+    
     
 }
 
@@ -80,17 +80,22 @@ void playState::Update( gameEngine* game) {
     myBat1.Loop();
     myBat2.Loop();
     myBall.Loop( myBat1.objectBox, myBat2.objectBox );
+    snprintf( p1ScoreConv, sizeof( p1ScoreConv ), "%d", myBall.p1Score);
+    snprintf( p2ScoreConv, sizeof( p2ScoreConv ), "%d", myBall.p2Score);
+    p1ScoreText = Texture::drawText( scoreFont, game->m_Renderer, p1ScoreConv );
+    p2ScoreText = Texture::drawText( scoreFont, game->m_Renderer, p2ScoreConv );
 }
 
 void playState::Draw( gameEngine* game) {
     SDL_SetRenderDrawColor( game->m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( game->m_Renderer );
+    
     for( int i = 0; i < gameObject::objectList.size(); i++ ) {
         if( !gameObject::objectList[i ] ) continue;
         gameObject::objectList[ i ]->Render( game->m_Renderer );
     }
-    //myBat1.Render( game->m_Renderer );
-    //myBall.Render( game->m_Renderer );
-    Texture::textureDraw( textTest, game->m_Renderer, 30, 30 );
+    
+    Texture::textureDraw( p1ScoreText, game->m_Renderer, 300, 430 );
+    Texture::textureDraw( p2ScoreText, game->m_Renderer, 340, 430 );
     SDL_RenderPresent( game->m_Renderer );
 }

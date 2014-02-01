@@ -3,8 +3,8 @@
 Ball::Ball() {
     ballXVel = BALL_VEL;
     ballYVel = BALL_VEL;
-    //p1Score = 0;
-    //p2Score = 0;
+    p1Score = 0;
+    p2Score = 0;
 }
 
 void Ball::Load(std::string file, SDL_Renderer*& ballLoadRenderer, int x, int y, int width, int height) {
@@ -21,14 +21,16 @@ void Ball::Loop( SDL_Rect batBox1, SDL_Rect batBox2 ) {
     objectBox.x += ballXVel;
     
     if( objectBox.x < 0 ) {
-        objectBox.x = 0;
-        //p2Score += 1;
-        ballXVel = -ballXVel;
+        objectBox.x = SCREEN_WIDTH / 2;
+        objectBox.y = SCREEN_HEIGHT / 2;
+        p2Score += 1;
+        ballXVel = BALL_VEL;
     }
     else if( objectBox.x + objectBox.w > SCREEN_WIDTH ) {
-        objectBox.x = SCREEN_WIDTH - objectBox.w;
-        //p1Score += 1;
-        ballXVel = -ballXVel;
+        objectBox.x = SCREEN_WIDTH / 2;
+        objectBox.y = SCREEN_HEIGHT / 2;
+        p1Score += 1;
+        ballXVel = BALL_VEL;
     }
     
     objectBox.y += ballYVel;
@@ -41,7 +43,7 @@ void Ball::Loop( SDL_Rect batBox1, SDL_Rect batBox2 ) {
         ballYVel = -ballYVel;
     }
     else if ( Collide( batBox1 ) || Collide( batBox2 ) ) {
-        ballXVel = -ballXVel * 2;
+        ballXVel = -ballXVel;
     }
 }
 

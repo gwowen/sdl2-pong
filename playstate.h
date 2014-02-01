@@ -42,7 +42,11 @@ class playState: public gameState {
             
             Ball myBall;
             
-            SDL_Texture* textTest;
+            char p1ScoreConv[ 10 ];
+            char p2ScoreConv[ 10 ];
+            
+            SDL_Texture* p1ScoreText;
+            SDL_Texture* p2ScoreText;
             
             TTF_Font *scoreFont;
             
