@@ -15,6 +15,8 @@ class Ball: public gameObject {
     public:
         int ballXVel;
         int ballYVel;
+        //int p1Score;
+       //int p2Score;
         
         Ball();
         void Load( std::string file, SDL_Renderer* &ballLoadRenderer, int x, int y, int width, int height );

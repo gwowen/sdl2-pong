@@ -22,6 +22,18 @@ SDL_Texture* Texture::textureLoad(std::string fileName, SDL_Renderer* &texLoadRe
     return newTexture;
     }
 
+SDL_Texture* Texture::drawText(TTF_Font* &drawFont, SDL_Renderer* &drawTextRenderer, std::string inputText) {
+    
+    SDL_Color textColor = { 0, 0, 0 };
+    SDL_Texture* textTexture = NULL;
+    
+    SDL_Surface* tempTextSurface = TTF_RenderText_Solid( drawFont, inputText.c_str(), textColor );
+    
+    textTexture = SDL_CreateTextureFromSurface( drawTextRenderer, tempTextSurface );
+    SDL_FreeSurface( tempTextSurface );
+    return textTexture;
+}
+
 void Texture::textureDraw(SDL_Texture* &texDrawTex, SDL_Renderer*& texDrawRenderer, int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip) {
     
     SDL_Rect renderQuad;

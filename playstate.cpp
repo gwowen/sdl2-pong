@@ -24,6 +24,9 @@ void playState::Init( gameEngine* game ) {
     gameObject::objectList.push_back( &myBat2 );
     gameObject::objectList.push_back( &myBall );
     
+    scoreFont = TTF_OpenFont( "../pager.ttf", 28 );
+    textTest = Texture::drawText( scoreFont, game->m_Renderer, "Hello World");
+    
 }
 
 void playState::Cleanup() {
@@ -88,5 +91,6 @@ void playState::Draw( gameEngine* game) {
     }
     //myBat1.Render( game->m_Renderer );
     //myBall.Render( game->m_Renderer );
+    Texture::textureDraw( textTest, game->m_Renderer, 30, 30 );
     SDL_RenderPresent( game->m_Renderer );
 }

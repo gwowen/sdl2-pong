@@ -36,15 +36,15 @@ class playState: public gameState {
         private:
             static playState m_playState;
             
-            SDL_Surface* temp;
-            
-            SDL_Texture* testTexture;
-            
             Bat myBat1;
             
             Bat myBat2;
             
             Ball myBall;
+            
+            SDL_Texture* textTest;
+            
+            TTF_Font *scoreFont;
             
     
 };

@@ -1,7 +1,5 @@
 //gameengine.cpp
 #include <stdio.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "gameengine.h"
 #include "gamestate.h"
 
@@ -13,6 +11,12 @@ bool gameEngine::Init( const char* title, int width, int height ) {
     
     if( !SDL_SetHint( SDL_HINT_RENDER_VSYNC, "1") ) {
         printf( "Warning: VSync not enabled" );
+        return false;
+    }
+    
+    if( TTF_Init() < 0 ) {
+        printf( "TTF Init failed\n" );
+        return false;
     }
     
     m_Window = SDL_CreateWindow( title, SDL_WINDOWPOS_UNDEFINED, 
