@@ -40,7 +40,9 @@ class playState: public gameState {
             
             SDL_Texture* testTexture;
             
-            Bat myBat;
+            Bat myBat1;
+            
+            Bat myBat2;
             
             Ball myBall;
             

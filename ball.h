@@ -18,9 +18,9 @@ class Ball: public gameObject {
         
         Ball();
         void Load( std::string file, SDL_Renderer* &ballLoadRenderer, int x, int y, int width, int height );
-        void Loop();
+        void Loop( SDL_Rect batBox1, SDL_Rect batBox2 );
         void Render( SDL_Renderer* & ballDrawRenderer );
-        bool Collide();
+        bool Collide( SDL_Rect collisionTarget );
         void Cleanup();
 };
 

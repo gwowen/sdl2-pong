@@ -15,7 +15,7 @@ void Ball::Render(SDL_Renderer*& ballDrawRenderer) {
     
 }
 
-void Ball::Loop() {
+void Ball::Loop( SDL_Rect batBox1, SDL_Rect batBox2 ) {
     objectBox.x += ballXVel;
     
     if( objectBox.x < 0 ) {
@@ -36,9 +36,33 @@ void Ball::Loop() {
         objectBox.y = SCREEN_HEIGHT - objectBox.h;
         ballYVel = -ballYVel;
     }
+    else if ( Collide( batBox1 ) || Collide( batBox2 ) ) {
+        ballXVel = -ballXVel * 2;
+    }
 }
 
-
+bool Ball::Collide(SDL_Rect collisionTarget) {
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
+    int bottomA, bottomB;
+    
+    leftA = objectBox.x;
+    rightA = objectBox.x + objectBox.w;
+    topA = objectBox.y;
+    bottomA = objectBox.y + objectBox.h;
+    
+    leftB = collisionTarget.x;
+    rightB = collisionTarget.x + collisionTarget.w;
+    topB = collisionTarget.y;
+    bottomB = collisionTarget.y + collisionTarget.h;
+    
+    if( bottomA <= topB  || topA >= bottomB || rightA <= leftB || leftA >= rightB ) {
+        return false;
+    }
+    
+    return true;
+}
 
 void Ball::Cleanup() {
     gameObject::Cleanup();
