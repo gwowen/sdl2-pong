@@ -8,6 +8,7 @@
 #include "gamestate.h"
 #include "gameengine.h"
 #include "playstate.h"
+#include "introstate.h"
 #include "graphics.h"
 #include "constants.h"
 #include "ball.h"
@@ -30,8 +31,6 @@ void playState::Init( gameEngine* game ) {
 }
 
 void playState::Cleanup() {
-    //myBat1.Cleanup();
-    //myBall.Cleanup();
     for( int i = 0; i < gameObject::objectList.size(); i++ ) {
         if( !gameObject::objectList[ i ] ) continue;
         gameObject::objectList[ i ]->Cleanup();
@@ -60,7 +59,8 @@ void playState::handleEvents( gameEngine* game ) {
                 case SDLK_s: myBat1.batYVel += BAT_VEL; break;
                 case SDLK_UP: myBat2.batYVel -= BAT_VEL; break;
                 case SDLK_DOWN: myBat2.batYVel += BAT_VEL; break;
-                case SDLK_ESCAPE: game->Quit();
+                case SDLK_ESCAPE: game->Quit(); break;
+                case SDLK_SPACE: game->changeState( introState::Instance() );
                 default:break;
             }
         }

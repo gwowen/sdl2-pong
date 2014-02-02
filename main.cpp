@@ -1,6 +1,7 @@
 //appwindow.cpp -  a basic SDL window
 #include "gameengine.h"
 #include "playstate.h"
+#include "introstate.h"
 
 int main( int argc, char* argv[] ) {
     gameEngine game;
@@ -9,7 +10,8 @@ int main( int argc, char* argv[] ) {
         printf( "Game failed to initialize\n");
     }
     
-    game.changeState( playState::Instance() );
+    //game.changeState( playState::Instance() );
+    game.changeState( introState::Instance() );
     
     while( game.Running() ) {
        game.handleEvents();

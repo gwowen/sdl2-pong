@@ -13,17 +13,20 @@
 
 class introState : public gameState {
     public:
-        void Init();
+        void Init( gameEngine* game );
         void Cleanup();
         void handleEvents( gameEngine* game );
         void Draw( gameEngine* game);
+        void Pause();
+        void Resume();
+        void Update( gameEngine* game );
         
         static introState* Instance() {
             return &m_introState;
         }
         
     protected:
-        introState();
+        introState() {};
         
     private:
         static introState m_introState;
