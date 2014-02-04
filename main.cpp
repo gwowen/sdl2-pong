@@ -1,6 +1,5 @@
-//appwindow.cpp -  a basic SDL window
+//main.cpp -  displays title screen, most of the magic happens elsewhere!
 #include "gameengine.h"
-#include "playstate.h"
 #include "introstate.h"
 
 int main( int argc, char* argv[] ) {

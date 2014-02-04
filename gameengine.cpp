@@ -3,6 +3,7 @@
 #include "gameengine.h"
 #include "gamestate.h"
 
+//gameEngine::Init - used to initially set up the window, initialize SDL, etc.
 bool gameEngine::Init( const char* title, int width, int height ) {
     if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 ) {
         printf( "Failed to start SDL\n");
@@ -55,6 +56,7 @@ bool gameEngine::Init( const char* title, int width, int height ) {
     
 }
 
+//gameEngine::Cleanup - cleans up game states, shuts down SDL
 void gameEngine::Cleanup() {
     while(!states.empty() ) {
         states.back()->Cleanup();
@@ -68,6 +70,7 @@ void gameEngine::Cleanup() {
     SDL_Quit();
 }
 
+//gameEngine::changeState - handles changes between game states and initializes them
 void gameEngine::changeState(gameState* state) {
     if( !states.empty() ) {
         states.back()->Cleanup();
@@ -79,6 +82,7 @@ void gameEngine::changeState(gameState* state) {
     
 }
 
+//gameEngine::pushState - pauses existing state and pushes a new one onto the stack
 void gameEngine::pushState(gameState* state) {
     if( !states.empty() ){
         states.back()->Pause();
@@ -88,6 +92,7 @@ void gameEngine::pushState(gameState* state) {
     states.back()->Init( this );
 }
 
+//gameEngine::popState - cleans up existing state and removes it
 void gameEngine::popState() {
     if( !states.empty() ) {
         states.back()->Cleanup();
@@ -99,15 +104,18 @@ void gameEngine::popState() {
     }
 }
 
+//gameEngine::handleEvents - calls the events handler of a state
 void gameEngine::handleEvents() {
     states.back()->handleEvents( this );
 }
 
+//gameEngine::Update - calls the update routine of a state
 void gameEngine::Update() {
     states.back()->Update( this );
     
 }
 
+//gameEngine::Draw - calls the draw function of a state
 void gameEngine::Draw() {
     states.back()->Draw( this );
     

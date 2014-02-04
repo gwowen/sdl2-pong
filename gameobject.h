@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include "graphics.h"
 
+//gameObject class - the base from which all other objects such as bats, balls and so on are derived
+
 class gameObject {
     
 protected:

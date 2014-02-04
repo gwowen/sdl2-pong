@@ -4,7 +4,6 @@
  *
  * Created on 16 January 2014, 20:16
  */
-
 #ifndef GAMEENGINE_H
 #define	GAMEENGINE_H
 
@@ -17,6 +16,8 @@
 using namespace std;
 
 class gameState;
+
+//gameEngine class: handles all things such as creation of window, cleanup of game, changing game states, etc.
 
 class gameEngine {
 public:
@@ -33,16 +34,12 @@ public:
     bool Running() { return m_Running; }
     void Quit() { m_Running = false; }
     
-    //game's window & renderer
-    
     SDL_Window* m_Window;
     
     SDL_Renderer* m_Renderer;
     
 private:
-    //game state stack... which will be staying as just one instance for a while...
     vector<gameState*> states;
-    //running variable
     bool m_Running;
 };
 
