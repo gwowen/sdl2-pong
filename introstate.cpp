@@ -2,6 +2,7 @@
 #include "gameengine.h"
 #include "gamestate.h"
 #include "playstate.h"
+#include "playstateai.h"
 #include "introstate.h"
 
 introState introState::m_introState;
@@ -31,6 +32,10 @@ void introState::handleEvents(gameEngine* game) {
                 case SDL_KEYDOWN:
                     switch( event.key.keysym.sym ) {
                         case SDLK_1:
+                            game->changeState( playStateAI::Instance() );
+                            break;
+                            
+                        case SDLK_2:
                             game->changeState( playState::Instance() );
                             break;
                             

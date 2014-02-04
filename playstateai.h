@@ -2,7 +2,7 @@
  * File:   playstateai.h
  * Author: gareth
  *
- * Created on 03 February 2014, 23:41
+ * Created on 04 February 2014, 18:39
  */
 
 #ifndef PLAYSTATEAI_H
@@ -10,11 +10,10 @@
 #include <SDL2/SDL.h>
 #include "gamestate.h"
 #include "gameobject.h"
-#include "bat.h"
 #include "ball.h"
+#include "bat.h"
 
 class playStateAI: public gameState {
-    
     public:
         void Init( gameEngine* game );
         void Cleanup();
@@ -26,7 +25,7 @@ class playStateAI: public gameState {
         void Update( gameEngine* game );
         void Draw( gameEngine* game );
         
-        static playStateAI* Instance() {
+         static playStateAI* Instance() {
           return &m_playStateAI;  
         }
         
@@ -34,11 +33,11 @@ class playStateAI: public gameState {
             playStateAI() {}
             
         private:
-            static playState m_playStateAI;
+            static playStateAI m_playStateAI;
             
-            Bat myBat1;
+            Bat playerBat;
             
-            Bat myBat2;
+            Bat aiBat;
             
             Ball myBall;
             
@@ -49,11 +48,7 @@ class playStateAI: public gameState {
             SDL_Texture* p2ScoreText;
             
             TTF_Font *scoreFont;
-            
-    
 };
-
-
 
 #endif	/* PLAYSTATEAI_H */
 
